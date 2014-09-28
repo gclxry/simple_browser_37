@@ -32,7 +32,6 @@
         'content.gyp:content_worker',
         'content_resources.gyp:content_resources',
         'content_simple_resources',
-        'layouttest_support_content',
         '../base/base.gyp:base',
         '../base/base.gyp:base_static',
         '../base/third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
