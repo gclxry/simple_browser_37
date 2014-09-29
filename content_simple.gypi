@@ -61,6 +61,8 @@
         '..',
       ],
       'sources': [
+	  'simple/app/simple_main_delegate.cc',
+	  'simple/app/simple_main_delegate.h',
       ],
       'msvs_settings': {
         'VCLinkerTool': {
