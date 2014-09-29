@@ -65,6 +65,18 @@
 	  'simple/app/simple_main_delegate.h',
 	  'simple/browser/simple_content_browser_client.cc',
 	  'simple/browser/simple_content_browser_client.h',
+	  'simple/browser/simple_browser_main_parts.cc',
+	  'simple/browser/simple_browser_main_parts.h',
+	  'simple/browser/simple_browser_context.cc',
+	  'simple/browser/simple_browser_context.h',
+	  'simple/browser/simple_net_log.cc',
+	  'simple/browser/simple_net_log.h',
+	  'simple/browser/simple_url_request_context_getter.cc',
+	  'simple/browser/simple_url_request_context_getter.h',
+	  'simple/browser/simple_web_contents_delegate.cc',
+	  'simple/browser/simple_web_contents_delegate.h',
+	  'simple/browser/simple_web_contents_view_delegate.cc',
+	  'simple/browser/simple_web_contents_view_delegate.h',
       ],
       'msvs_settings': {
         'VCLinkerTool': {
