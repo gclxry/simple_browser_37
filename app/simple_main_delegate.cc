@@ -20,7 +20,7 @@
 //#include "content/shell/app/shell_breakpad_client.h"
 //#include "content/shell/app/webkit_test_platform_support.h"
 //#include "content/shell/browser/shell_browser_main.h"
-//#include "content/shell/browser/shell_content_browser_client.h"
+#include "content/simple/browser/simple_content_browser_client.h"
 //#include "content/shell/common/shell_switches.h"
 //#include "content/shell/renderer/shell_content_renderer_client.h"
 #include "net/cookies/cookie_monster.h"
@@ -78,11 +78,11 @@ SimpleMainDelegate::~SimpleMainDelegate() {
 //  ui::ResourceBundle::InitSharedInstanceWithPakPath(pak_file);
 //}
 
-//ContentBrowserClient* SimpleMainDelegate::CreateContentBrowserClient() {
-//  browser_client_.reset(new SimpleContentBrowserClient);
-//  return browser_client_.get();
-//}
-//
+ContentBrowserClient* SimpleMainDelegate::CreateContentBrowserClient() {
+  browser_client_.reset(new SimpleContentBrowserClient);
+  return browser_client_.get();
+}
+
 //ContentRendererClient* SimpleMainDelegate::CreateContentRendererClient() {
 //  renderer_client_.reset(new SimpleContentRendererClient);
 //  return renderer_client_.get();
