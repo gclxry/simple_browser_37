@@ -26,9 +26,9 @@ namespace views {
 class GURL;
 namespace content {
 
-//#if defined(USE_AURA)
-//  class ShellPlatformDataAura;
-//#endif
+#if defined(USE_AURA)
+  class SimplePlatformDataAura;
+#endif
 
   class BrowserContext;
   class SiteInstance;
@@ -189,12 +189,12 @@ namespace content {
 
 
 
-//#if defined(TOOLKIT_VIEWS)
-//    static views::ViewsDelegate* views_delegate_;
-//    views::Widget* window_widget_;
-//#endif // defined(TOOLKIT_VIEWS)
-//    static ShellPlatformDataAura* platform_;
-//
+#if defined(TOOLKIT_VIEWS)
+    static views::ViewsDelegate* views_delegate_;
+    views::Widget* window_widget_;
+#endif // defined(TOOLKIT_VIEWS)
+    static SimplePlatformDataAura* platform_;
+
 
     bool headless_;
 

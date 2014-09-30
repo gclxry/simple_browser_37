@@ -77,6 +77,9 @@
 	  'simple/browser/simple_web_contents_delegate.h',
 	  'simple/browser/simple_web_contents_view_delegate.cc',
 	  'simple/browser/simple_web_contents_view_delegate.h',
+	  'simple/browser/simple_views.cc',
+	  'simple/browser/simple_platform_data_aura.cc',
+	  'simple/browser/simple_platform_data_aura.h',
       ],
       'msvs_settings': {
         'VCLinkerTool': {
