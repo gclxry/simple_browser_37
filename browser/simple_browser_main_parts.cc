@@ -69,7 +69,7 @@ namespace content {
 
 
   void SimpleBrowserMainParts::PreMainMessageLoopRun() {
-    //net_log_.reset(new ShellNetLog("content_simple"));
+    net_log_.reset(new SimpleNetLog("content_simple"));
     browser_context_.reset(new SimpleBrowserContext(false, net_log_.get()));
     off_the_record_browser_context_.reset(
       new SimpleBrowserContext(true, net_log_.get()));
