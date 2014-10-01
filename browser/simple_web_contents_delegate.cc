@@ -74,7 +74,6 @@ namespace content {
     web_contents->SetDelegate(shell);
 
     shell->PlatformSetContents();
-
     shell->PlatformResizeSubViews();
 
     return shell;

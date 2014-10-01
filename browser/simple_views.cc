@@ -47,7 +47,7 @@
 namespace content {
 
   namespace {
-    // ViewDelegate implementation for aura content shell
+    //ViewDelegate implementation for aura content shell
     class ShellViewsDelegateAura : public views::DesktopTestViewsDelegate {
     public:
       ShellViewsDelegateAura() : use_transparent_windows_(false) {
@@ -465,7 +465,8 @@ namespace content {
     views::Widget::InitParams params;
     params.bounds = gfx::Rect(0, 0, width, height);
     params.delegate = new ShellWindowDelegateView(this);
-    params.remove_standard_frame = true;
+    // ÏÔÊ¾´°¿ÚµÄ±ß¿ò
+    params.remove_standard_frame = false;// true;
     window_widget_->Init(params);
 
     content_size_ = gfx::Size(width, height);
