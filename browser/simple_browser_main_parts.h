@@ -31,9 +31,9 @@ namespace content {
     virtual ~SimpleBrowserMainParts();
 
     // BrowserMainParts overrides.
-    virtual void PreEarlyInitialization() OVERRIDE;
-    virtual void PreMainMessageLoopStart() OVERRIDE;
-    virtual void PostMainMessageLoopStart() OVERRIDE;
+    //virtual void PreEarlyInitialization() OVERRIDE;
+    //virtual void PreMainMessageLoopStart() OVERRIDE;
+    //virtual void PostMainMessageLoopStart() OVERRIDE;
     virtual void PreMainMessageLoopRun() OVERRIDE;
     virtual bool MainMessageLoopRun(int* result_code) OVERRIDE;
     virtual void PostMainMessageLoopRun() OVERRIDE;

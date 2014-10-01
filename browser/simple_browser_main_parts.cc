@@ -16,7 +16,7 @@
 #include "content/public/common/content_switches.h"
 #include "content/public/common/main_function_params.h"
 #include "content/public/common/url_constants.h"
-//#include "content/simple/browser/shell.h"
+#include "content/simple/browser/simple_web_contents_delegate.h"
 #include "content/simple/browser/simple_browser_context.h"
 #include "content/simple/browser/simple_net_log.h"
 //#include "content/simple/common/simple_switches.h"
@@ -74,14 +74,14 @@ namespace content {
     off_the_record_browser_context_.reset(
       new SimpleBrowserContext(true, net_log_.get()));
 
-    //Shell::Initialize();
-    //net::NetModule::SetResourceProvider(PlatformResourceProvider);
+    SimpleWebContentsDelegate::Initialize();
+    net::NetModule::SetResourceProvider(PlatformResourceProvider);
 
-    //Shell::CreateNewWindow(browser_context_.get(),
-    //  GetStartupURL(),
-    //  NULL,
-    //  MSG_ROUTING_NONE,
-    //  gfx::Size());
+    SimpleWebContentsDelegate::CreateNewWindow(browser_context_.get(),
+      GetStartupURL(),
+      NULL,
+      MSG_ROUTING_NONE,
+      gfx::Size());
 
     if (parameters_.ui_task) {
       parameters_.ui_task->Run();

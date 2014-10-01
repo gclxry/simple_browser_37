@@ -91,7 +91,7 @@ namespace content {
       virtual void ExecuteCommand(int command_id, int event_flags) OVERRIDE{
         switch (command_id) {
         case COMMAND_OPEN_DEVTOOLS:
-          shell_->ShowDevToolsForElementAt(params_.x, params_.y);
+          //shell_->ShowDevToolsForElementAt(params_.x, params_.y);
           break;
         };
       }

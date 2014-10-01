@@ -89,6 +89,23 @@ namespace content {
     return off_the_record_;
   }
 
+  DownloadManagerDelegate* SimpleBrowserContext::GetDownloadManagerDelegate()  {
+    //DownloadManager* manager = BrowserContext::GetDownloadManager(this);
+
+    //if (!download_manager_delegate_.get()) {
+    //  download_manager_delegate_.reset(new ShellDownloadManagerDelegate());
+    //  download_manager_delegate_->SetDownloadManager(manager);
+    //  CommandLine* cmd_line = CommandLine::ForCurrentProcess();
+    //  if (cmd_line->HasSwitch(switches::kDumpRenderTree)) {
+    //    download_manager_delegate_->SetDownloadBehaviorForTesting(
+    //      path_.Append(FILE_PATH_LITERAL("downloads")));
+    //  }
+    //}
+
+    //return download_manager_delegate_.get();
+    return NULL;
+  }
+
 
   net::URLRequestContextGetter* SimpleBrowserContext::GetRequestContext()  {
     return GetDefaultStoragePartition(this)->GetURLRequestContext();

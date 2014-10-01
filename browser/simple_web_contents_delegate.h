@@ -54,15 +54,11 @@ namespace content {
     void Stop();
     void UpdateNavigationControls(bool to_different_document);
     void Close();
-    void ShowDevTools();
-    void ShowDevToolsForElementAt(int x, int y);
-    void ShowDevToolsForTest(const std::string& settings,
-      const std::string& frontend_url);
-    void CloseDevTools();
-#if defined(OS_MACOSX)
-    // Resizes the web content view to the given dimensions.
-    void SizeTo(const gfx::Size& content_size);
-#endif
+    //void ShowDevTools();
+    //void ShowDevToolsForElementAt(int x, int y);
+    //void ShowDevToolsForTest(const std::string& settings,
+    //  const std::string& frontend_url);
+    //void CloseDevTools();
 
     // Do one time initialization at application startup.
     static void Initialize();
@@ -96,8 +92,8 @@ namespace content {
       bool* was_blocked) OVERRIDE;
     virtual void LoadingStateChanged(WebContents* source,
       bool to_different_document) OVERRIDE;
-    virtual void ToggleFullscreenModeForTab(WebContents* web_contents,
-      bool enter_fullscreen) OVERRIDE;
+    //virtual void ToggleFullscreenModeForTab(WebContents* web_contents,
+    //  bool enter_fullscreen) OVERRIDE;
     virtual bool IsFullscreenForTabOrPending(
       const WebContents* web_contents) const OVERRIDE;
     virtual void RequestToLockMouse(WebContents* web_contents,
@@ -107,16 +103,16 @@ namespace content {
     virtual bool CanOverscrollContent() const OVERRIDE;
     virtual void DidNavigateMainFramePostCommit(
       WebContents* web_contents) OVERRIDE;
-    virtual JavaScriptDialogManager* GetJavaScriptDialogManager() OVERRIDE;
-    virtual bool AddMessageToConsole(WebContents* source,
-      int32 level,
-      const base::string16& message,
-      int32 line_no,
-      const base::string16& source_id) OVERRIDE;
-    virtual void RendererUnresponsive(WebContents* source) OVERRIDE;
+    //virtual JavaScriptDialogManager* GetJavaScriptDialogManager() OVERRIDE;
+    //virtual bool AddMessageToConsole(WebContents* source,
+    //  int32 level,
+    //  const base::string16& message,
+    //  int32 line_no,
+    //  const base::string16& source_id) OVERRIDE;
+    //virtual void RendererUnresponsive(WebContents* source) OVERRIDE;
     virtual void ActivateContents(WebContents* contents) OVERRIDE;
     virtual void DeactivateContents(WebContents* contents) OVERRIDE;
-    virtual void WorkerCrashed(WebContents* source) OVERRIDE;
+    //virtual void WorkerCrashed(WebContents* source) OVERRIDE;
     virtual bool HandleContextMenu(const content::ContextMenuParams& params)
       OVERRIDE;
     virtual void WebContentsFocused(WebContents* contents) OVERRIDE;

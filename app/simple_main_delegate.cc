@@ -51,9 +51,9 @@ SimpleMainDelegate::~SimpleMainDelegate() {
 //  return false;
 //}
 
-//void SimpleMainDelegate::PreSandboxStartup() {
-//  InitializeResourceBundle();
-//}
+void SimpleMainDelegate::PreSandboxStartup() {
+  InitializeResourceBundle();
+}
 
 //int SimpleMainDelegate::RunProcess(
 //    const std::string& process_type,
@@ -69,14 +69,14 @@ SimpleMainDelegate::~SimpleMainDelegate() {
 //}
 
 
-//void SimpleMainDelegate::InitializeResourceBundle() {
-//  base::FilePath pak_file;
-//  base::FilePath pak_dir;
-//  PathService::Get(base::DIR_MODULE, &pak_dir);
-//
-//  pak_file = pak_dir.Append(FILE_PATH_LITERAL("content_simple.pak"));
-//  ui::ResourceBundle::InitSharedInstanceWithPakPath(pak_file);
-//}
+void SimpleMainDelegate::InitializeResourceBundle() {
+  base::FilePath pak_file;
+  base::FilePath pak_dir;
+  PathService::Get(base::DIR_MODULE, &pak_dir);
+
+  pak_file = pak_dir.Append(FILE_PATH_LITERAL("content_simple.pak"));
+  ui::ResourceBundle::InitSharedInstanceWithPakPath(pak_file);
+}
 
 ContentBrowserClient* SimpleMainDelegate::CreateContentBrowserClient() {
   browser_client_.reset(new SimpleContentBrowserClient);

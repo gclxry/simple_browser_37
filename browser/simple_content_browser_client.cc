@@ -15,12 +15,12 @@
 #include "content/public/browser/storage_partition.h"
 #include "content/public/common/content_switches.h"
 //#include "content/public/common/url_constants.h"
-//#include "content/shell/browser/shell.h"
-//#include "content/shell/browser/shell_browser_context.h"
-//#include "content/shell/browser/shell_browser_main_parts.h"
+#include "content/simple/browser/simple_web_contents_delegate.h"
+#include "content/simple/browser/simple_browser_context.h"
+#include "content/simple/browser/simple_browser_main_parts.h"
 //#include "content/shell/browser/shell_devtools_delegate.h"
 //#include "content/shell/browser/shell_message_filter.h"
-//#include "content/shell/browser/shell_net_log.h"
+#include "content/simple/browser/simple_net_log.h"
 //#include "content/shell/browser/shell_quota_permission_context.h"
 //#include "content/shell/browser/shell_resource_dispatcher_host_delegate.h"
 //#include "content/shell/browser/shell_web_contents_view_delegate_creator.h"
@@ -64,42 +64,42 @@ SimpleContentBrowserClient::~SimpleContentBrowserClient() {
   g_browser_client = NULL;
 }
 
-//BrowserMainParts* SimpleContentBrowserClient::CreateBrowserMainParts(
-//    const MainFunctionParams& parameters) {
-//  shell_browser_main_parts_ = new ShellBrowserMainParts(parameters);
-//  return shell_browser_main_parts_;
-//}
+BrowserMainParts* SimpleContentBrowserClient::CreateBrowserMainParts(
+  const MainFunctionParams& parameters) {
+  simple_browser_main_parts_ = new SimpleBrowserMainParts(parameters);
+  return simple_browser_main_parts_;
+}
 
 //void SimpleContentBrowserClient::RenderProcessWillLaunch(
 //    RenderProcessHost* host) {
 //}
 //
-//net::URLRequestContextGetter* SimpleContentBrowserClient::CreateRequestContext(
-//    BrowserContext* content_browser_context,
-//    ProtocolHandlerMap* protocol_handlers,
-//    URLRequestInterceptorScopedVector request_interceptors) {
-//  ShellBrowserContext* shell_browser_context =
-//      ShellBrowserContextForBrowserContext(content_browser_context);
-//  return shell_browser_context->CreateRequestContext(
-//      protocol_handlers, request_interceptors.Pass());
-//}
-//
-//net::URLRequestContextGetter*
-//SimpleContentBrowserClient::CreateRequestContextForStoragePartition(
-//    BrowserContext* content_browser_context,
-//    const base::FilePath& partition_path,
-//    bool in_memory,
-//    ProtocolHandlerMap* protocol_handlers,
-//    URLRequestInterceptorScopedVector request_interceptors) {
-//  ShellBrowserContext* shell_browser_context =
-//      ShellBrowserContextForBrowserContext(content_browser_context);
-//  return shell_browser_context->CreateRequestContextForStoragePartition(
-//      partition_path,
-//      in_memory,
-//      protocol_handlers,
-//      request_interceptors.Pass());
-//}
-//
+net::URLRequestContextGetter* SimpleContentBrowserClient::CreateRequestContext(
+  BrowserContext* content_browser_context,
+  ProtocolHandlerMap* protocol_handlers,
+  URLRequestInterceptorScopedVector request_interceptors) {
+  SimpleBrowserContext* simple_browser_context =
+    SimpleBrowserContextForBrowserContext(content_browser_context);
+  return simple_browser_context->CreateRequestContext(
+    protocol_handlers, request_interceptors.Pass());
+}
+
+net::URLRequestContextGetter*
+SimpleContentBrowserClient::CreateRequestContextForStoragePartition(
+BrowserContext* content_browser_context,
+const base::FilePath& partition_path,
+bool in_memory,
+ProtocolHandlerMap* protocol_handlers,
+URLRequestInterceptorScopedVector request_interceptors) {
+  SimpleBrowserContext* simple_browser_context =
+    SimpleBrowserContextForBrowserContext(content_browser_context);
+  return simple_browser_context->CreateRequestContextForStoragePartition(
+    partition_path,
+    in_memory,
+    protocol_handlers,
+    request_interceptors.Pass());
+}
+
 //bool SimpleContentBrowserClient::IsHandledURL(const GURL& url) {
 //  if (!url.is_valid())
 //    return false;
@@ -194,10 +194,10 @@ SimpleContentBrowserClient::~SimpleContentBrowserClient() {
 //  return new ShellSpeechRecognitionManagerDelegate();
 //}
 //
-//net::NetLog* SimpleContentBrowserClient::GetNetLog() {
-//  return shell_browser_main_parts_->net_log();
-//}
-//
+net::NetLog* SimpleContentBrowserClient::GetNetLog() {
+  return simple_browser_main_parts_->net_log();
+}
+
 //bool SimpleContentBrowserClient::ShouldSwapProcessesForRedirect(
 //    ResourceContext* resource_context,
 //    const GURL& current_url,
@@ -222,26 +222,26 @@ SimpleContentBrowserClient::~SimpleContentBrowserClient() {
 //}
 //
 //
-//ShellBrowserContext* SimpleContentBrowserClient::browser_context() {
-//  return shell_browser_main_parts_->browser_context();
-//}
-//
-//ShellBrowserContext*
-//    SimpleContentBrowserClient::off_the_record_browser_context() {
-//  return shell_browser_main_parts_->off_the_record_browser_context();
-//}
-//
+SimpleBrowserContext* SimpleContentBrowserClient::browser_context() {
+  return simple_browser_main_parts_->browser_context();
+}
+
+SimpleBrowserContext*
+SimpleContentBrowserClient::off_the_record_browser_context() {
+  return simple_browser_main_parts_->off_the_record_browser_context();
+}
+
 //AccessTokenStore* SimpleContentBrowserClient::CreateAccessTokenStore() {
 //  return new ShellAccessTokenStore(browser_context());
 //}
 //
-//ShellBrowserContext*
-//SimpleContentBrowserClient::ShellBrowserContextForBrowserContext(
-//    BrowserContext* content_browser_context) {
-//  if (content_browser_context == browser_context())
-//    return browser_context();
-//  DCHECK_EQ(content_browser_context, off_the_record_browser_context());
-//  return off_the_record_browser_context();
-//}
+SimpleBrowserContext*
+SimpleContentBrowserClient::SimpleBrowserContextForBrowserContext(
+BrowserContext* content_browser_context) {
+  if (content_browser_context == browser_context())
+    return browser_context();
+  DCHECK_EQ(content_browser_context, off_the_record_browser_context());
+  return off_the_record_browser_context();
+}
 
 }  // namespace content

@@ -14,8 +14,8 @@
 
 namespace content {
 
-//class ShellBrowserContext;
-//class ShellBrowserMainParts;
+  class SimpleBrowserContext;
+  class SimpleBrowserMainParts;
 //class ShellResourceDispatcherHostDelegate;
 
 class SimpleContentBrowserClient : public ContentBrowserClient {
@@ -29,19 +29,19 @@ class SimpleContentBrowserClient : public ContentBrowserClient {
   virtual ~SimpleContentBrowserClient();
 
   // ContentBrowserClient overrides.
-  //virtual BrowserMainParts* CreateBrowserMainParts(
-  //    const MainFunctionParams& parameters) OVERRIDE;
+  virtual BrowserMainParts* CreateBrowserMainParts(
+      const MainFunctionParams& parameters) OVERRIDE;
   //virtual void RenderProcessWillLaunch(RenderProcessHost* host) OVERRIDE;
-  //virtual net::URLRequestContextGetter* CreateRequestContext(
-  //    BrowserContext* browser_context,
-  //    ProtocolHandlerMap* protocol_handlers,
-  //    URLRequestInterceptorScopedVector request_interceptors) OVERRIDE;
-  //virtual net::URLRequestContextGetter* CreateRequestContextForStoragePartition(
-  //    BrowserContext* browser_context,
-  //    const base::FilePath& partition_path,
-  //    bool in_memory,
-  //    ProtocolHandlerMap* protocol_handlers,
-  //    URLRequestInterceptorScopedVector request_interceptors) OVERRIDE;
+  virtual net::URLRequestContextGetter* CreateRequestContext(
+    BrowserContext* browser_context,
+    ProtocolHandlerMap* protocol_handlers,
+    URLRequestInterceptorScopedVector request_interceptors) OVERRIDE;
+  virtual net::URLRequestContextGetter* CreateRequestContextForStoragePartition(
+    BrowserContext* browser_context,
+    const base::FilePath& partition_path,
+    bool in_memory,
+    ProtocolHandlerMap* protocol_handlers,
+    URLRequestInterceptorScopedVector request_interceptors) OVERRIDE;
   //virtual bool IsHandledURL(const GURL& url) OVERRIDE;
   //virtual void AppendExtraCommandLineSwitches(base::CommandLine* command_line,
   //                                            int child_process_id) OVERRIDE;
@@ -56,7 +56,7 @@ class SimpleContentBrowserClient : public ContentBrowserClient {
   //virtual QuotaPermissionContext* CreateQuotaPermissionContext() OVERRIDE;
   //virtual SpeechRecognitionManagerDelegate*
   //    GetSpeechRecognitionManagerDelegate() OVERRIDE;
-  //virtual net::NetLog* GetNetLog() OVERRIDE;
+  virtual net::NetLog* GetNetLog() OVERRIDE;
   //virtual bool ShouldSwapProcessesForRedirect(ResourceContext* resource_context,
   //                                            const GURL& current_url,
   //                                            const GURL& new_url) OVERRIDE;
@@ -65,25 +65,25 @@ class SimpleContentBrowserClient : public ContentBrowserClient {
   //virtual void PreSpawnRenderer(sandbox::TargetPolicy* policy,
   //                              bool* success) OVERRIDE;
 
-  //ShellBrowserContext* browser_context();
-  //ShellBrowserContext* off_the_record_browser_context();
+  SimpleBrowserContext* browser_context();
+  SimpleBrowserContext* off_the_record_browser_context();
   //ShellResourceDispatcherHostDelegate* resource_dispatcher_host_delegate() {
   //  return resource_dispatcher_host_delegate_.get();
   //}
-  //ShellBrowserMainParts* shell_browser_main_parts() {
-  //  return shell_browser_main_parts_;
-  //}
+  SimpleBrowserMainParts* simple_browser_main_parts() {
+    return simple_browser_main_parts_;
+  }
 
  private:
-  //ShellBrowserContext* ShellBrowserContextForBrowserContext(
-  //    BrowserContext* content_browser_context);
+   SimpleBrowserContext* SimpleBrowserContextForBrowserContext(
+     BrowserContext* content_browser_context);
 
-  //scoped_ptr<ShellResourceDispatcherHostDelegate>
-  //    resource_dispatcher_host_delegate_;
+   //scoped_ptr<ShellResourceDispatcherHostDelegate>
+   //  resource_dispatcher_host_delegate_;
 
-  //base::FilePath webkit_source_dir_;
+   base::FilePath webkit_source_dir_;
 
-  //ShellBrowserMainParts* shell_browser_main_parts_;
+   SimpleBrowserMainParts* simple_browser_main_parts_;
 };
 
 }  // namespace content
