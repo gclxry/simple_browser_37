@@ -19,6 +19,8 @@ namespace net {
   class NetLog;
 }
 
+class CMainFrame;
+
 namespace content {
 
   class SimpleBrowserContext;
@@ -50,6 +52,7 @@ namespace content {
     scoped_ptr<net::NetLog> net_log_;
     scoped_ptr<SimpleBrowserContext> browser_context_;
     scoped_ptr<SimpleBrowserContext> off_the_record_browser_context_;
+    scoped_ptr<CMainFrame> main_ui_;
 
     // For running content_browsertests.
     const MainFunctionParams parameters_;

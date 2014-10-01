@@ -20,6 +20,7 @@
 #include "content/simple/browser/simple_browser_context.h"
 #include "content/simple/browser/simple_net_log.h"
 //#include "content/simple/common/simple_switches.h"
+#include "content/simple/ui/MainFrm.h"
 #include "grit/net_resources.h"
 #include "net/base/filename_util.h"
 #include "net/base/net_module.h"
@@ -76,14 +77,19 @@ namespace content {
     off_the_record_browser_context_.reset(new SimpleBrowserContext(true, NULL));
     
 
-    SimpleWebContentsDelegate::Initialize();
-    net::NetModule::SetResourceProvider(PlatformResourceProvider);
+    //SimpleWebContentsDelegate::Initialize();
+    //net::NetModule::SetResourceProvider(PlatformResourceProvider);
 
-    SimpleWebContentsDelegate::CreateNewWindow(browser_context_.get(),
-      GetStartupURL(),
-      NULL,
-      MSG_ROUTING_NONE,
-      gfx::Size());
+    //SimpleWebContentsDelegate::CreateNewWindow(browser_context_.get(),
+    //  GetStartupURL(),
+    //  NULL,
+    //  MSG_ROUTING_NONE,
+    //  gfx::Size());
+
+    main_ui_.reset(new CMainFrame);
+    main_ui_->m_browser_main = this;
+    main_ui_->CreateEx();
+    main_ui_->ShowWindow(SW_SHOWDEFAULT);
 
     if (parameters_.ui_task) {
       parameters_.ui_task->Run();

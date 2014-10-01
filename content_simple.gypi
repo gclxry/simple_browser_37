@@ -78,6 +78,17 @@
 	  'simple/browser/simple_views.cc',
 	  'simple/browser/simple_platform_data_aura.cc',
 	  'simple/browser/simple_platform_data_aura.h',
+	  'simple/ui/AddressBar.cpp',
+	  'simple/ui/AddressBar.h',
+	  'simple/ui/MainFrm.cpp',
+	  'simple/ui/MainFrm.h',
+	  'simple/ui/resource.h',
+	  'simple/ui/SimpleClient.cpp',
+	  'simple/ui/SimpleClient.h',
+	  'simple/ui/SimpleTab.cpp',
+	  'simple/ui/SimpleTab.h',
+	  'simple/ui/stdafx.cpp',
+	  'simple/ui/stdafx.h',
       ],
       'msvs_settings': {
         'VCLinkerTool': {
