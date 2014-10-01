@@ -69,6 +69,13 @@ namespace content {
       int routing_id,
       const gfx::Size& initial_size);
 
+    void CreateNewTab(BrowserContext* browser_context,
+      const GURL& url,
+      SiteInstance* site_instance,
+      int routing_id,
+      const gfx::Size& initial_size);
+    
+
     // Returns the Shell object corresponding to the given RenderViewHost.
     static SimpleWebContentsDelegate* FromRenderViewHost(RenderViewHost* rvh);
 
@@ -92,8 +99,8 @@ namespace content {
       bool* was_blocked) OVERRIDE;
     virtual void LoadingStateChanged(WebContents* source,
       bool to_different_document) OVERRIDE;
-    //virtual void ToggleFullscreenModeForTab(WebContents* web_contents,
-    //  bool enter_fullscreen) OVERRIDE;
+    virtual void ToggleFullscreenModeForTab(WebContents* web_contents,
+      bool enter_fullscreen) OVERRIDE;
     virtual bool IsFullscreenForTabOrPending(
       const WebContents* web_contents) const OVERRIDE;
     virtual void RequestToLockMouse(WebContents* web_contents,
@@ -101,8 +108,7 @@ namespace content {
       bool last_unlocked_by_target) OVERRIDE;
     virtual void CloseContents(WebContents* source) OVERRIDE;
     virtual bool CanOverscrollContent() const OVERRIDE;
-    virtual void DidNavigateMainFramePostCommit(
-      WebContents* web_contents) OVERRIDE;
+    virtual void DidNavigateMainFramePostCommit(WebContents* web_contents) OVERRIDE;
     //virtual JavaScriptDialogManager* GetJavaScriptDialogManager() OVERRIDE;
     //virtual bool AddMessageToConsole(WebContents* source,
     //  int32 level,
@@ -201,6 +207,10 @@ namespace content {
     // True if the destructur of Shell should post a quit closure on the current
     // message loop if the destructed Shell object was the last one.
     static bool quit_message_loop_;
+
+    public:
+      HWND parent_hwnd_;
+      SimpleWebContentsDelegate(HWND hwnd);
   };
 
 }  // namespace content

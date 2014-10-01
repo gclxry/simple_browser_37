@@ -14,7 +14,7 @@ CMainFrame::CMainFrame()
   m_addressbar = NULL;
   m_clientview = NULL;
   m_tab = NULL;
-  //m_web_contents_delegate = NULL;
+  m_web_contents_delegate = NULL;
 }
 
 BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
@@ -139,10 +139,10 @@ void CMainFrame::LayoutUI(int x, int y)
 
 void CMainFrame::OpenHomePage()
 {
-  //m_web_contents_delegate = new content::SimpleWebContentsDelegate();
-  //m_web_contents_delegate->Initialize();
-  //m_web_contents_delegate->CreateNewTab((content::BrowserContext*)m_browser_main->browser_context_.get(),
-  //  GURL("http://www.baidu.com/"), NULL, MSG_ROUTING_NONE, gfx::Size());
+  m_web_contents_delegate = new content::SimpleWebContentsDelegate(m_hWnd);
+  m_web_contents_delegate->Initialize();
+  m_web_contents_delegate->CreateNewTab((content::BrowserContext*)m_browser_main->browser_context_.get(),
+    GURL("http://www.baidu.com/"), NULL, MSG_ROUTING_NONE, gfx::Size(800,600));
   //m_web_contents_delegate->SetHWND(m_hWnd, m_clientview->m_hWnd);
   //m_web_contents_delegate->window_ = m_clientview->m_hWnd;
   //m_web_contents_delegate->SetBrowserContext((content::BrowserContext*)m_browser_main->browser_context_.get());

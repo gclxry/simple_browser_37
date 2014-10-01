@@ -21,9 +21,9 @@ namespace content {
 class SimpleContentBrowserClient : public ContentBrowserClient {
  public:
   // Gets the current instance.
-  //static SimpleContentBrowserClient* Get();
+  static SimpleContentBrowserClient* Get();
 
-  //static void SetSwapProcessesForRedirect(bool swap);
+  static void SetSwapProcessesForRedirect(bool swap);
 
   SimpleContentBrowserClient();
   virtual ~SimpleContentBrowserClient();

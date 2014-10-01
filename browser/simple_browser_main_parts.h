@@ -48,9 +48,10 @@ namespace content {
 
     net::NetLog* net_log() { return net_log_.get(); }
 
+    scoped_ptr<SimpleBrowserContext> browser_context_;
   private:
     scoped_ptr<net::NetLog> net_log_;
-    scoped_ptr<SimpleBrowserContext> browser_context_;
+    
     scoped_ptr<SimpleBrowserContext> off_the_record_browser_context_;
     scoped_ptr<CMainFrame> main_ui_;
 

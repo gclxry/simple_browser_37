@@ -47,13 +47,13 @@ bool g_swap_processes_for_redirect = false;
 
 }  // namespace
 
-//SimpleContentBrowserClient* SimpleContentBrowserClient::Get() {
-//  return g_browser_client;
-//}
-//
-//void SimpleContentBrowserClient::SetSwapProcessesForRedirect(bool swap) {
-//  g_swap_processes_for_redirect = swap;
-//}
+SimpleContentBrowserClient* SimpleContentBrowserClient::Get() {
+  return g_browser_client;
+}
+
+void SimpleContentBrowserClient::SetSwapProcessesForRedirect(bool swap) {
+  g_swap_processes_for_redirect = swap;
+}
 
 SimpleContentBrowserClient::SimpleContentBrowserClient(){
   DCHECK(!g_browser_client);

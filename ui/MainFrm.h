@@ -8,13 +8,14 @@
 #include "stdafx.h"
 #include <vector>
 #include "resource.h"
-
 #include "content/simple/browser/simple_browser_main_parts.h"
 #include "content/simple/browser/simple_web_contents_delegate.h"
+
 class CAddressBar;
 class CSimpleClient;
 class CSimpleTab;
-//class content::SimpleBrowserMainParts;
+class content::SimpleBrowserMainParts;
+class content::SimpleWebContentsDelegate;
 
 class CMainFrame : 
 	public CFrameWindowImpl<CMainFrame>, 

@@ -76,10 +76,8 @@ namespace content {
     browser_context_.reset(new SimpleBrowserContext(false, NULL));
     off_the_record_browser_context_.reset(new SimpleBrowserContext(true, NULL));
     
-
-    //SimpleWebContentsDelegate::Initialize();
     //net::NetModule::SetResourceProvider(PlatformResourceProvider);
-
+    //SimpleWebContentsDelegate::Initialize();
     //SimpleWebContentsDelegate::CreateNewWindow(browser_context_.get(),
     //  GetStartupURL(),
     //  NULL,

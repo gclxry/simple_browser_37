@@ -34,7 +34,7 @@
 #include "ui/views/view.h"
 #include "ui/views/widget/widget.h"
 #include "ui/views/widget/widget_delegate.h"
-
+#include "ui/views/win/hwnd_util.h"
 
 #include "ui/views/widget/desktop_aura/desktop_screen.h"
 
@@ -129,7 +129,7 @@ namespace content {
       void SetAddressBarURL(const GURL& url) {
         url_entry_->SetText(base::ASCIIToUTF16(url.spec()));
       }
-      void SetWebContents(WebContents* web_contents, const gfx::Size& size) {
+      void SetWebContents(WebContents* web_contents, const gfx::Size& size, HWND hwnd) {
         contents_view_->SetLayoutManager(new views::FillLayout());
         web_view_ = new views::WebView(web_contents->GetBrowserContext());
         web_view_->SetWebContents(web_contents);
@@ -143,11 +143,8 @@ namespace content {
         bounds.set_size(GetWidget()->GetRootView()->GetPreferredSize());
         GetWidget()->SetBounds(bounds);
 
-        // Resizing a widget on chromeos doesn't automatically resize the root, need
-        // to explicitly do that.
-#if defined(OS_CHROMEOS)
-        GetWidget()->GetNativeWindow()->GetHost()->SetBounds(bounds);
-#endif
+        HWND root_hwnd = views::HWNDForView(contents_view_);
+        SetParent(root_hwnd, hwnd);
       }
 
       void SetWindowTitle(const base::string16& title) { title_ = title; }
@@ -466,7 +463,7 @@ namespace content {
     params.bounds = gfx::Rect(0, 0, width, height);
     params.delegate = new ShellWindowDelegateView(this);
     // ÏÔÊ¾´°¿ÚµÄ±ß¿ò
-    params.remove_standard_frame = false;// true;
+    params.remove_standard_frame = true;
     window_widget_->Init(params);
 
     content_size_ = gfx::Size(width, height);
@@ -480,10 +477,9 @@ namespace content {
 
   void SimpleWebContentsDelegate::PlatformSetContents() {
 
-      views::WidgetDelegate* widget_delegate = window_widget_->widget_delegate();
-      ShellWindowDelegateView* delegate_view =
-        static_cast<ShellWindowDelegateView*>(widget_delegate);
-      delegate_view->SetWebContents(web_contents_.get(), content_size_);
+    views::WidgetDelegate* widget_delegate = window_widget_->widget_delegate();
+    ShellWindowDelegateView* delegate_view = static_cast<ShellWindowDelegateView*>(widget_delegate);
+    delegate_view->SetWebContents(web_contents_.get(), content_size_, parent_hwnd_);
   }
 
   void SimpleWebContentsDelegate::PlatformResizeSubViews() {

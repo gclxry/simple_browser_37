@@ -46,7 +46,10 @@ namespace content {
     const CommandLine& command_line = *CommandLine::ForCurrentProcess();
     windows_.push_back(this);
   }
-
+  SimpleWebContentsDelegate::SimpleWebContentsDelegate(HWND hwnd)
+  {
+    parent_hwnd_ = hwnd;
+  }
   SimpleWebContentsDelegate::~SimpleWebContentsDelegate() {
     PlatformCleanUp();
 
@@ -125,6 +128,31 @@ namespace content {
     if (!url.is_empty())
       shell->LoadURL(url);
     return shell;
+  }
+
+  void SimpleWebContentsDelegate::CreateNewTab(BrowserContext* browser_context,
+    const GURL& url,
+    SiteInstance* site_instance,
+    int routing_id,
+    const gfx::Size& initial_size) {
+    WebContents::CreateParams create_params(browser_context, site_instance);
+    create_params.routing_id = routing_id;
+    create_params.initial_size = AdjustWindowSize(initial_size);
+    WebContents* web_contents = WebContents::Create(create_params);
+
+    //SimpleWebContentsDelegate* shell = CreateShell(web_contents, create_params.initial_size);
+    //if (!url.is_empty())
+    //  shell->LoadURL(url);
+    //return shell;
+
+    PlatformCreateWindow(initial_size.width(), initial_size.height());
+    web_contents_.reset(web_contents);
+    web_contents->SetDelegate(this);
+    PlatformSetContents();
+    PlatformResizeSubViews();
+
+    if (!url.is_empty())
+      LoadURL(url);
   }
 
   void SimpleWebContentsDelegate::LoadURL(const GURL& url) {
@@ -228,6 +256,14 @@ namespace content {
 
   bool SimpleWebContentsDelegate::IsFullscreenForTabOrPending(const WebContents* web_contents) const {
     return is_fullscreen_;
+  }
+
+  void SimpleWebContentsDelegate::ToggleFullscreenModeForTab(WebContents* web_contents,
+    bool enter_fullscreen) {
+    if (is_fullscreen_ != enter_fullscreen) {
+      is_fullscreen_ = enter_fullscreen;
+      web_contents->GetRenderViewHost()->WasResized();
+    }
   }
 
   void SimpleWebContentsDelegate::RequestToLockMouse(WebContents* web_contents,
