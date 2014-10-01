@@ -69,10 +69,12 @@ namespace content {
 
 
   void SimpleBrowserMainParts::PreMainMessageLoopRun() {
-    net_log_.reset(new SimpleNetLog("content_simple"));
-    browser_context_.reset(new SimpleBrowserContext(false, net_log_.get()));
-    off_the_record_browser_context_.reset(
-      new SimpleBrowserContext(true, net_log_.get()));
+    //net_log_.reset(new SimpleNetLog("content_simple"));
+    //browser_context_.reset(new SimpleBrowserContext(false, net_log_.get()));
+    //off_the_record_browser_context_.reset(new SimpleBrowserContext(true, net_log_.get()));
+    browser_context_.reset(new SimpleBrowserContext(false, NULL));
+    off_the_record_browser_context_.reset(new SimpleBrowserContext(true, NULL));
+    
 
     SimpleWebContentsDelegate::Initialize();
     net::NetModule::SetResourceProvider(PlatformResourceProvider);
